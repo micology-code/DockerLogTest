@@ -8,14 +8,14 @@ namespace DockerLogTest
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            //Log.Logger = new LoggerConfiguration()
-            // .ReadFrom.Configuration(builder.Configuration)
-            // .CreateLogger();
+            Log.Logger = new LoggerConfiguration()
+             .ReadFrom.Configuration(builder.Configuration)
+             .CreateLogger();
 
 
             // Add services to the container.
             builder.Services.AddAuthorization();
-            //builder.Host.UseSerilog();
+            builder.Host.UseSerilog();
 
             var app = builder.Build();
 
