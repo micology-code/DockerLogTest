@@ -8,7 +8,7 @@ COPY "$NAME/*.csproj" "./$NAME/"
 RUN dotnet restore
 
 # copy everything else and build app
-COPY "$NAME/." "./$NAME/""
+COPY "$NAME/." "./$NAME/"
 WORKDIR "/src/$NAME"
 RUN dotnet publish -c release -o /app --no-restore
 
