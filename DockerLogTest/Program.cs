@@ -42,6 +42,7 @@ namespace DockerLogTest
             });
 
             app.Run();
+            Log.CloseAndFlush();
         }
     }
 }
