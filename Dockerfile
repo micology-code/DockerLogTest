@@ -8,7 +8,7 @@ RUN dotnet restore
 
 # copy everything else and build app
 COPY DockerLogTest/. ./DockerLogTest/
-WORKDIR /source/DockerLogTest
+WORKDIR /src/DockerLogTest
 RUN dotnet publish -c release -o /app --no-restore
 
 
