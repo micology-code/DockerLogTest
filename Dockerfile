@@ -18,4 +18,5 @@ WORKDIR /app
 EXPOSE 8080
 COPY --from=build /app ./
 
-ENTRYPOINT ["dotnet", "$NAME.dll"]
+ENV RunName=$NAME
+ENTRYPOINT ["dotnet", "$RunName.dll"]
