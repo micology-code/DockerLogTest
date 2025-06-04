@@ -19,4 +19,4 @@ EXPOSE 8080
 COPY --from=build /app ./
 
 ARG RunName="DockerLogTest.dll"
-ENTRYPOINT ["dotnet", RunName]
+ENTRYPOINT ["dotnet", "DockerLogTest.dll"]
