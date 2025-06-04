@@ -1,14 +1,15 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG NAME="DockerLogTest"
 WORKDIR /src
 
 # copy csproj and restore as distinct layers
 COPY *.sln .
-COPY DockerLogTest/*.csproj ./DockerLogTest/
+COPY "$NAME/*.csproj" "./$NAME/"
 RUN dotnet restore
 
 # copy everything else and build app
-COPY DockerLogTest/. ./DockerLogTest/
-WORKDIR /src/DockerLogTest
+COPY "$NAME/." "./$NAME/""
+WORKDIR "/src/$NAME"
 RUN dotnet publish -c release -o /app --no-restore
 
 
@@ -17,4 +18,4 @@ WORKDIR /app
 EXPOSE 8080
 COPY --from=build /app ./
 
-ENTRYPOINT ["dotnet", "DockerLogTest.dll"]
+ENTRYPOINT ["dotnet", "$NAME.dll"]
