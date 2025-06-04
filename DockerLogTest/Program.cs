@@ -9,8 +9,8 @@ namespace DockerLogTest
             var builder = WebApplication.CreateBuilder(args);
 
             Log.Logger = new LoggerConfiguration()
-             .ReadFrom.Configuration(builder.Configuration)
-             //.WriteTo.Console()
+             //.ReadFrom.Configuration(builder.Configuration)
+             .WriteTo.Console()
              .CreateLogger();
 
 
@@ -41,6 +41,8 @@ namespace DockerLogTest
                     .ToArray();
                 return forecast;
             });
+
+            Log.Logger.Information("MySettings:Setting1=>{value}", builder.Configuration["MySettings:Setting1"]);
 
             app.Run();
             Log.CloseAndFlush();
