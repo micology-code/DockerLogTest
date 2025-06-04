@@ -1,5 +1,7 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG NAME="DockerLogTest"
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+ARG NAME
 WORKDIR /src
 
 # copy csproj and restore as distinct layers
@@ -14,10 +16,10 @@ RUN dotnet publish -c release -o /app --no-restore
 
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+ARG NAME
 WORKDIR /app
 EXPOSE 8080
 COPY --from=build /app ./
 
-ARG NAME="DockerLogTest"
 ENV RunName="$NAME.dll"
 ENTRYPOINT dotnet $RunName
