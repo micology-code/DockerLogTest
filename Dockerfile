@@ -18,6 +18,5 @@ WORKDIR /app
 EXPOSE 8080
 COPY --from=build /app ./
 
-ENV RunName="DockerLogTest.dll"
+ENV RunName="$Name.dll"
 ENTRYPOINT dotnet $RunName
-# ENTRYPOINT ["dotnet", "DockerLogTest.dll"]
