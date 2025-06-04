@@ -19,4 +19,4 @@ EXPOSE 8080
 COPY --from=build /app ./
 
 ENV RunName=$NAME
-ENTRYPOINT ["sh", "dotnet", "$RunName.dll"]
+ENTRYPOINT ["sh","-c", "dotnet", "${RunName}.dll"]
